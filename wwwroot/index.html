@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.2/svg.min.js" integrity="sha512-I+rKw3hArzZIHzrkdELbKqrXfkSvw/h0lW/GgB8FThaBVz2e5ZUlSW8kY8v3q6wq37eybIwyufkEZxe4qSlGcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Weather App</title>
+
+    <style>
+        :root{
+            background-color: #1e1e1e;
+            color: white;
+        }
+    </style>
+    <script>
+        const temp = [23, 32, 30, 31, 23, 12, 11, 32, 22, 25];
+        const COL_WIDTH = 5;
+        $("document").ready(() =>{
+            let backgroundWidth = parseFloat($("background").attr("width"));
+            let backgroundHeight = parseFloat($("background").attr("height"));
+            
+            
+        });
+    </script>
+</head>
+<body>
+    <h1>Weather App</h1>
+    <svg id="svg" width="800" height="600">
+        <rect
+            id="background"
+            x="150" y="50"
+            width="500" height="500"
+            style="fill: grey; stroke: white;"
+        />
+    </svg>
+</body>
+</html>
