@@ -28,51 +28,61 @@
         const COL_PADDING = 5;
         const TEXT_PADDING = 10;
         $("document").ready(() =>{
-            svg = SVG("#svg");
-            backgroundX = parseFloat($("#background").attr("x"));
-            backgroundY = parseFloat($("#background").attr("y"));
-            backgroundWidth = parseFloat($("#background").attr("width"));
-            backgroundHeight = parseFloat($("#background").attr("height"));
-        
-            temp.forEach((val) => {
-                if(val > max) max = val;
+            $("#svgContainer").load("./background.svg", () => {
+                svg = SVG("#svg5");
+                backgroundX = parseFloat($("#background").attr("x"));
+                backgroundY = parseFloat($("#background").attr("y"));
+                backgroundWidth = parseFloat($("#background").attr("width"));
+                backgroundHeight = parseFloat($("#background").attr("height"));
+                let dateText = $("#dateText");
+    
+                temp.forEach((val) => {
+                    if(val > max) max = val;
+                });
+    
+                let colWidth = (backgroundWidth / temp.length) - COL_PADDING - (COL_PADDING / temp.length);
+                let today = new Date();
+                dateText.children("tspan").text(`${today.getDay()} - ${today.getMonth()} - ${today.getFullYear()}`);
+
+                for(let i = 0; i < temp.length; i++){
+                    let height = 1;
+                    let rec = svg.rect();
+                    rec.attr("x", backgroundX + COL_PADDING + (COL_PADDING + colWidth) * i);
+                    rec.attr("y", backgroundY + backgroundHeight - height - COL_PADDING);
+                    rec.attr("width", colWidth);
+                    rec.attr("height", height);
+                    rec.attr("style", `fill: grey;`);
+                    rects.push(rec);
+                }
+                
+                for(let i = 0; i < temp.length; i++){
+                    let text = svg.text(temp[i]);
+                    text.attr("x", backgroundX + COL_PADDING + (colWidth * 0.15) + (COL_PADDING + colWidth) * i);
+                    text.attr("y", backgroundY + backgroundHeight - TEXT_PADDING);
+                    text.attr("style", `font-size: 8px;`);
+                    text.hide();
+                    labels.push(text);
+                }
             });
-
-            let colWidth = (backgroundWidth / temp.length) - COL_PADDING - (COL_PADDING / temp.length);
-
-            for(let i = 0; i < temp.length; i++){
-                let height = 1;
-                let rec = svg.rect();
-                rec.attr("x", backgroundX + COL_PADDING + (COL_PADDING + colWidth) * i);
-                rec.attr("y", backgroundY + backgroundHeight - height - COL_PADDING);
-                rec.attr("width", colWidth);
-                rec.attr("height", height);
-                rec.attr("style", `fill: grey;`);
-                rects.push(rec);
-            }
-            
-            for(let i = 0; i < temp.length; i++){
-                let text = svg.text(temp[i]);
-                text.attr("x", backgroundX + COL_PADDING + (colWidth * 0.4) + (COL_PADDING + colWidth) * i);
-                text.attr("y", backgroundY + backgroundHeight - TEXT_PADDING);
-                text.attr("style", `font-size: 12px; font-family: 'Impact'; fill: white; stroke: black;`);
-                labels.push(text);
-            }
         });
 
         function Animate(){
-            setInterval(() => {
+            let animation = setInterval(() => {
+                let collumsFinished = 0;
                 for(let i = 0; i < temp.length; i++){
-                    let targetHeight = backgroundHeight * (temp[i] / (max + 5));
+                    let targetHeight = backgroundHeight * (temp[i] / (max + backgroundHeight * 0.1));
                     let currentHeight = rects[i].attr("height");
                     if(currentHeight != targetHeight){
                         if(currentHeight + targetHeight * 0.1  < targetHeight){
                             IncreaseCollumBy(rects[i], labels[i], targetHeight * 0.1);
                         }else{
                             IncreaseCollumBy(rects[i], labels[i], targetHeight - currentHeight);
+                            if(currentHeight === targetHeight) collumsFinished++;
                         }
                     }
                 }
+
+                if(collumsFinished == temp.length) clearInterval(animation);
             }, 16);
         }
 
@@ -81,23 +91,17 @@
             let rectY = rec.attr("y");
             rec.attr("height", rectHeight + incBy);
             rec.attr("y", rectY - incBy);
-            rec.attr("style", `fill: grey; stroke: black;`);
+            rec.attr("style", `fill: aquamarine; stroke: black;`);
 
             let lablelY = label.attr("y");
             label.attr("y", lablelY - incBy);
+            label.show();
         }
     </script>
 </head>
 <body>
     <h1>Weather App</h1>
     <button onclick="Animate();">Animate</button>
-    <svg id="svg" width="800" height="600">
-        <rect
-            id="background"
-            x="100" y="50"
-            width="600" height="500"
-            style="fill: grey; stroke: white;"
-        />
-    </svg>
+    <div id="svgContainer"></div>
 </body>
 </html>

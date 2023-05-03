@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="800"
+   height="600"
+   viewBox="0 0 211.66666 158.75"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="background.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.1767713"
+     inkscape:cx="243.88767"
+     inkscape:cy="296.9991"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="250.68593"
+       y="70.531974"
+       width="230.29114"
+       height="37.390445"
+       id="rect2048" />
+    <rect
+       x="176.93759"
+       y="15.094202"
+       width="312.4143"
+       height="41.057014"
+       id="rect289" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#808080;fill-opacity:1;stroke:#ffffff;stroke-width:0.23621;stroke-dasharray:none;stroke-opacity:1"
+       id="background"
+       width="158.51379"
+       height="105.59712"
+       x="26.576439"
+       y="39.805607"
+       inkscape:label="background">
+      <title
+         id="title2160">background</title>
+    </rect>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,18.258834,0)"
+       id="titleText"
+       style="font-size:32px;white-space:pre;shape-inside:url(#rect289);shape-padding:0.849783;display:inline;fill:#fffffc;fill-opacity:1;stroke:none"><tspan
+         x="177.78711"
+         y="45.13793"
+         id="tspan2083">Komáromi Időjárás</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,9.8893197,-1.9242336)"
+       id="dateText"
+       style="font-size:32px;white-space:pre;shape-inside:url(#rect2048);display:inline;fill:#ffffff;fill-opacity:1;stroke:none"><tspan
+         x="250.68555"
+         y="99.72582"
+         id="tspan2085">xx - xx - xxxx</tspan></text>
+  </g>
+</svg>
