@@ -15,23 +15,87 @@
         }
     </style>
     <script>
+        var svg;
+        var backgroundX;
+        var backgroundY;
+        var backgroundWidth;
+        var backgroundHeight;
+        
+        var max = 0;
         const temp = [23, 32, 30, 31, 23, 12, 11, 32, 22, 25];
-        const COL_WIDTH = 5;
+        var rects = [];
+        var labels = [];
+        const COL_PADDING = 5;
+        const TEXT_PADDING = 10;
         $("document").ready(() =>{
-            let backgroundWidth = parseFloat($("background").attr("width"));
-            let backgroundHeight = parseFloat($("background").attr("height"));
+            svg = SVG("#svg");
+            backgroundX = parseFloat($("#background").attr("x"));
+            backgroundY = parseFloat($("#background").attr("y"));
+            backgroundWidth = parseFloat($("#background").attr("width"));
+            backgroundHeight = parseFloat($("#background").attr("height"));
+        
+            temp.forEach((val) => {
+                if(val > max) max = val;
+            });
+
+            let colWidth = (backgroundWidth / temp.length) - COL_PADDING - (COL_PADDING / temp.length);
+
+            for(let i = 0; i < temp.length; i++){
+                let height = 1;
+                let rec = svg.rect();
+                rec.attr("x", backgroundX + COL_PADDING + (COL_PADDING + colWidth) * i);
+                rec.attr("y", backgroundY + backgroundHeight - height - COL_PADDING);
+                rec.attr("width", colWidth);
+                rec.attr("height", height);
+                rec.attr("style", `fill: grey;`);
+                rects.push(rec);
+            }
             
-            
+            for(let i = 0; i < temp.length; i++){
+                let text = svg.text(temp[i]);
+                text.attr("x", backgroundX + COL_PADDING + (colWidth * 0.4) + (COL_PADDING + colWidth) * i);
+                text.attr("y", backgroundY + backgroundHeight - TEXT_PADDING);
+                text.attr("style", `font-size: 12px; font-family: 'Impact'; fill: white; stroke: black;`);
+                labels.push(text);
+            }
         });
+
+        function Animate(){
+            setInterval(() => {
+                for(let i = 0; i < temp.length; i++){
+                    let targetHeight = backgroundHeight * (temp[i] / (max + 5));
+                    let currentHeight = rects[i].attr("height");
+                    if(currentHeight != targetHeight){
+                        if(currentHeight + targetHeight * 0.1  < targetHeight){
+                            IncreaseCollumBy(rects[i], labels[i], targetHeight * 0.1);
+                        }else{
+                            IncreaseCollumBy(rects[i], labels[i], targetHeight - currentHeight);
+                        }
+                    }
+                }
+            }, 16);
+        }
+
+        function IncreaseCollumBy(rec, label, incBy){
+            let rectHeight = rec.attr("height");
+            let rectY = rec.attr("y");
+            rec.attr("height", rectHeight + incBy);
+            rec.attr("y", rectY - incBy);
+            rec.attr("style", `fill: grey; stroke: black;`);
+
+            let lablelY = label.attr("y");
+            label.attr("y", lablelY - incBy);
+        }
     </script>
 </head>
 <body>
     <h1>Weather App</h1>
+    <button onclick="Animate();">Animate</button>
     <svg id="svg" width="800" height="600">
         <rect
             id="background"
-            x="150" y="50"
-            width="500" height="500"
+            x="100" y="50"
+            width="600" height="500"
             style="fill: grey; stroke: white;"
         />
     </svg>
