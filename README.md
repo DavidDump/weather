@@ -1,6 +1,7 @@
 ## Tobbi feladat:
 - [breakout](https://github.com/daviddump/breakout)
 - [bouncyball](https://github.com/daviddump/bouncy-ball)
+- [house](https://github.com/daviddump/house)
 
 ## Feladat:
 | Feladatrész | Részpontszám |
